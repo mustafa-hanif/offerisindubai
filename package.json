@@ -6,13 +6,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "next": "^12.0.4-canary.4",
+    "react": "^18.0.0-alpha-e0aa5e205-20211109",
+    "react-dom": "^18.0.0-alpha-e0aa5e205-20211109"
   },
   "devDependencies": {
+    "@types/react": "^17.0.34",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4"
+    "tailwindcss": "^2.2.16",
+    "typescript": "^4.4.4"
   }
 }
