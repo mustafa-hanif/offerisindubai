@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
 import Image from 'next/image';
+import { LocationMarkerIcon } from '@heroicons/react/solid';
 import { useEffect, useState } from 'react';
 
 const supabaseUrl = 'https://jsrjlfxhklrtqwqmtecc.supabase.co'
@@ -8,47 +9,16 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default function Home() {
+  useEffect(() => {
+    document.body.className = 'bg-sky-50';
+  }, []);
   return (
-    <main className="flex flex-col items-center justify-center w-full flex-1 px-4 text-center bg-">
+    <main className="flex flex-col items-center justify-center w-full flex-1 px-4">
       <Heading />
       <Example />
     </main>
   );
 }
-
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
-
-
-const files = [
-  {
-    title: '59 AED Brunch Offer',
-    size: 'Malang Cafe',
-    source:
-      '/malang.png',
-  },
-  {
-    title: '150 AED - 1 shisha 1 drink, semi final offer',
-    size: 'Smoke Lab',
-    source:
-      '/smokelab.png',
-  },
-  // More files...
-];
 
 function Example() {
   const [files, setFiles] = useState([]);
@@ -87,11 +57,17 @@ function Example() {
               <span className="sr-only">View details for {file.title}</span>
             </button>
           </div>
-          <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
+          <p className="mt-2 block text-sm font-medium text-sky-900 pointer-events-none">
             {file.offer_text}
           </p>
-          <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-            {file.cafe.name}
+          <p className="block text-sm font-medium text-sky-700 pointer-events-none">
+            <div>{file.cafe.name}</div>
+            <div className="flex">
+              <div>
+                <LocationMarkerIcon className="h-5 w-5" aria-hidden="true" />
+              </div>
+              <div className="mr-1">Get Directions</div>
+            </div>
           </p>
         </li>
       ))}
@@ -101,23 +77,23 @@ function Example() {
 
 function Heading() {
   return (
-    <div className="bg-white px-4 py-5 border-gray-200 sm:px-6">
+    <div className="px-4 py-5 border-gray-200 sm:px-6">
       <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-        <div className="ml-4 mt-2">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+        <div className="mt-2 mb-1">
+          <h1 className="text-2xl mr-0 lg:mr-4 leading-6 font-medium text-sky-800">
             Shisha offers today
-          </h3>
+          </h1>
         </div>
-        <div className="ml-4 mt-2 flex-shrink-0">
+        <div className="mt-2 mb-4 md:mb-0 flex-shrink-0">
           <button
             type="button"
-            className="relative inline-flex items-center mr-2 px-4 py-2 border shadow-sm text-sm font-medium rounded-md  hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="relative inline-flex items-center mr-2 px-4 py-2 border border-sky-500 shadow-sm bg-sky-100 text-sm text-sky-700 font-medium rounded-md  hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
           >
             Buy 1 get 1 offers
           </button>
           <button
             type="button"
-            className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md border-sky-500 text-sky-700 bg-sky-100 hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
           >
             Discount offers
           </button>
