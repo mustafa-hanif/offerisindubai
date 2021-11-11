@@ -1,4 +1,12 @@
+import { createClient } from '@supabase/supabase-js'
+
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+const supabaseUrl = 'https://jsrjlfxhklrtqwqmtecc.supabase.co'
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center w-full flex-1 px-4 text-center bg-">
@@ -24,6 +32,8 @@ export default function Home() {
   }
   ```
 */
+
+
 const files = [
   {
     title: '59 AED Brunch Offer',
@@ -41,16 +51,30 @@ const files = [
 ];
 
 function Example() {
+  const [files, setFiles] = useState([]);
+  useEffect(() => {
+    supabase
+    .from('shisha_deals')
+    .select(`
+    social_image,
+    offer_text,
+    cafe (
+      name
+    )
+  `).then(({ data: shisha_deals, error }) =>  { console.log(shisha_deals, error);
+    setFiles(shisha_deals);
+    });
+  }, []);
   return (
     <ul
       role="list"
       className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
     >
       {files.map((file) => (
-        <li key={file.source} className="relative">
+        <li key={file.social_image} className="relative">
           <div className="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
             <Image
-              src={file.source}
+              src={file.social_image}
               alt=""
               width={480}
               height={480}
@@ -64,10 +88,10 @@ function Example() {
             </button>
           </div>
           <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-            {file.title}
+            {file.offer_text}
           </p>
           <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-            {file.size}
+            {file.cafe.name}
           </p>
         </li>
       ))}
