@@ -15,8 +15,8 @@ export default function Story({
   const [voted, setVoted] = useState(false)
 
   return (
-    <div style={{ margin: '5px 0' }}>
-      <div className="title">
+    <div className='mx-4'>
+      <div>
         <span
           style={{
             cursor: 'pointer',

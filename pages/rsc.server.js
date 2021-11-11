@@ -42,7 +42,7 @@ export default function News() {
       <Suspense fallback={<Spinner />}>
         <NewsWithData />
       </Suspense>
-      {/* <Footer /> */}
+      <Footer />
     </Page>
   )
 }

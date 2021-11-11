@@ -1,13 +1,6 @@
-import Head from 'next/head';
-
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <Head>
-        <title>Offers in Dubai</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className="flex flex-col items-center justify-center w-full flex-1 px-4 text-center">
         <Heading />
         <Example />
@@ -111,15 +104,21 @@ function Heading() {
       <div className="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
         <div className="ml-4 mt-2">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
-            Job Postings
+            Shisha offers today
           </h3>
         </div>
         <div className="ml-4 mt-2 flex-shrink-0">
           <button
             type="button"
+            className="relative inline-flex items-center mr-2 px-4 py-2 border shadow-sm text-sm font-medium rounded-md  hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Buy 1 get 1 offers
+          </button>
+          <button
+            type="button"
             className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Create new job
+            Discount offers
           </button>
         </div>
       </div>
