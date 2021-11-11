@@ -1,11 +1,10 @@
+import Image from 'next/image';
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-4 text-center">
-        <Heading />
-        <Example />
-      </main>
-    </div>
+    <main className="flex flex-col items-center justify-center w-full flex-1 px-4 text-center bg-">
+      <Heading />
+      <Example />
+    </main>
   );
 }
 
@@ -27,40 +26,16 @@ export default function Home() {
 */
 const files = [
   {
-    title: 'IMG_4985.HEIC',
-    size: '3.9 MB',
+    title: '59 AED Brunch Offer',
+    size: 'Malang Cafe',
     source:
-      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+      '/malang.png',
   },
   {
-    title: 'IMG_4985.HEIC',
-    size: '3.9 MB',
+    title: '150 AED - 1 shisha 1 drink, semi final offer',
+    size: 'Smoke Lab',
     source:
-      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-  },
-  {
-    title: 'IMG_4985.HEIC',
-    size: '3.9 MB',
-    source:
-      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-  },
-  {
-    title: 'IMG_4985.HEIC',
-    size: '3.9 MB',
-    source:
-      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-  },
-  {
-    title: 'IMG_4985.HEIC',
-    size: '3.9 MB',
-    source:
-      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
-  },
-  {
-    title: 'IMG_4985.HEIC',
-    size: '3.9 MB',
-    source:
-      'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
+      '/smokelab.png',
   },
   // More files...
 ];
@@ -74,9 +49,11 @@ function Example() {
       {files.map((file) => (
         <li key={file.source} className="relative">
           <div className="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
-            <img
+            <Image
               src={file.source}
               alt=""
+              width={480}
+              height={480}
               className="object-cover pointer-events-none group-hover:opacity-75"
             />
             <button
