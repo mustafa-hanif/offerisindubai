@@ -1,9 +1,11 @@
 import { useState } from 'react'
 
+import timeAgo from '../lib/time-ago'
+
 export default function Story({
   id,
   title,
-  // date,
+  date,
   url,
   user,
   score,
@@ -34,11 +36,17 @@ export default function Story({
         )}
       </div>
       <div className="meta">
-        
+        {score} {plural(score, 'point')} by{' '}
         <a href={`/user?id=${user}`}>
           {user}
         </a>{' '}
-        
+        <a href={`/item?id=${id}`}>
+          {timeAgo(new Date(date)) /* note: we re-hydrate due to ssr */} ago
+        </a>{' '}
+        |{' '}
+        <a href={`/item?id=${id}`}>
+          {commentsCount} {plural(commentsCount, 'comment')}
+        </a>
       </div>
     </div>
   )

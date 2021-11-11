@@ -17,17 +17,19 @@ import { transform } from '../lib/get-item'
 import useData from '../lib/use-data'
 
 function StoryWithData({ id }) {
-  const data = useData(`s-${id}`, () => fetchData(`item/${id}`).then(transform))
+  const data = useData(`s-${id}`, () =>
+    fetchData(`item/${id}`).then(transform)
+  )
   return <Story {...data} />
 }
 
 function NewsWithData() {
-  const storyIds = useData('top', () => fetchData('topstories'))
+  const storyIds = useData('top', () => fetchData('topstories', 500))
   return (
     <>
       {storyIds.slice(0, 30).map((id) => {
         return (
-          <Suspense fallback={<Spinner />} key={id}>
+          <Suspense key={id} fallback={<Spinner />}>
             <StoryWithData id={id} />
           </Suspense>
         )
@@ -42,7 +44,8 @@ export default function News() {
       <Suspense fallback={<Spinner />}>
         <NewsWithData />
       </Suspense>
-      {/* <Footer /> */}
+      <Footer />
+      <SystemInfo />
     </Page>
   )
 }
