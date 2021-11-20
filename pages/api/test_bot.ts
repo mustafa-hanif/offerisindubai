@@ -2,7 +2,7 @@
 
 import { createClient } from '@supabase/supabase-js'
 import fs from 'fs';
-import async from 'async';
+
 import { ComputerVisionClient } from '@azure/cognitiveservices-computervision';
 import { TelegramMessage } from '../../types/TelegramMessage';
 
@@ -23,7 +23,7 @@ const computerVisionClient = new ComputerVisionClient(
   new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': key } }), endpoint);
 
 
-export default async function helloAPI(req, res) {
+export default async function TestBot(req, res) {
   try {
     console.log("recieve message");
     console.log(JSON.stringify(req.body));
@@ -57,28 +57,19 @@ export default async function helloAPI(req, res) {
     console.log(error);
     res.status(500).json(error)
   }
-  // const { data, error } = await supabase
-  // .from('logs')
-  // .insert([
-  //   { text: req.body },
-  // ])
-  // if (error) {
-  //   res.status(500).json(error)  
-  // }
-  // res.status(200).json(data)
 }
 
 // getFile from Telegram API
 // https://core.telegram.org/bots/api#getfile
 function getFile(file_id) {
-  console.log(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/getFile?file_id=${file_id}`);
-  return fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/getFile?file_id=${file_id}`);
+  console.log(`https://api.telegram.org/bot${process.env.TELEGRAM_TEST_TOKEN}/getFile?file_id=${file_id}`);
+  return fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TEST_TOKEN}/getFile?file_id=${file_id}`);
 }
 
 // download file from telegram API and save to disk
 // https://core.telegram.org/bots/api#downloadfile
 function downloadFile(file_path: any): Promise<Response> {
-  return fetch(`https://api.telegram.org/file/bot${process.env.TELEGRAM_TOKEN}/${file_path}`);
+  return fetch(`https://api.telegram.org/file/bot${process.env.TELEGRAM_TEST_TOKEN}/${file_path}`);
 }
 
 // save file to disk, create folder if not exists
@@ -99,7 +90,7 @@ function saveFile(file: any, file_name: string) {
 async function readTextFromURL(client: ComputerVisionClient, file) {
   // To recognize text in a local image, replace client.read() with readTextInStream() as shown:
   const text = await client.recognizePrintedTextInStream(false, file);
-  console.log(JSON.stringify(text));
+
   let result = '';
   const allWords = text.regions.forEach(region => {
     region.lines.forEach(line => {
